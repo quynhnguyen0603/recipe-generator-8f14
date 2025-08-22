@@ -1,0 +1,30 @@
+name: Python package - unit tests
+
+on:
+  pull_request_target:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      FLAG: ${{ secrets.FLAG }}
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+
+    - name: Install package
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+
+    - name: Unit tests
+      env:
+        FLAG: ${{ env.FLAG }}
+      run: |
+        echo "Running unit tests…"
+        pytest -ra

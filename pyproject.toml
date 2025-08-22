@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "katsu_curry"
+version = "0.1.0"
+description = "Python katsu‑curry recipe generator"
+authors = [{ name = "Katsu Inc.", email = "recipes@katsuinc.com" }]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
